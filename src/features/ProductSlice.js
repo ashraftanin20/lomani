@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from "../components/utils.js";
 
 const initialState = {
     items: [],
@@ -16,7 +17,7 @@ export const productFetch = createAsyncThunk('products/productFetch', async (val
         const max = values.max || 0;
         const rating = values.rating || 0;
         const order = values.order || '';
-        const response = await axios.get(`/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
+        const response = await axios.get(`${API}/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
         return response.data;
     } catch (err) {
         const message = err.response && err.response.data.message 
