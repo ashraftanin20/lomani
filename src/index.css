@@ -30,6 +30,25 @@ header {
   grid: header;
   background-color: #008B8B;
 }
+.mobile-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: max-content;
+  padding-left: 1rem;
+  margin-top: 0px;
+  margin-bottom: 2rem;
+}
+.mobile-header>div {
+  flex: 1 0 50%;
+}
+.mobile-header>div:first-child {
+  flex: 0 1 100%;
+}
+.mobile-box {
+  width: fit-content;
+}
 /* common */
 h1 {
   font-size: 1.8rem;

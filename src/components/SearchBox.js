@@ -11,7 +11,7 @@ function SearchBox() {
     }
     return (
         <form className="search" onSubmit={submitHandler}>
-            <div className="row">
+            <div className="row mobile-box">
                 <input type="text" name="q" id="q" onChange={(e) => setName(e.target.value)}>
 
                 </input>

@@ -42,12 +42,17 @@ function App() {
     dispatch(logoutUser(null));
   }
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
   const productCategories = useSelector(state => state.productCategories);
   const { items: categories, error: errorCategories, status: statusCategories } = productCategories;
 
   useEffect(() => {
     dispatch(listProductCategories());
-  }, [dispatch]);
+    window.addEventListener("resize", () => {
+      const ismobile = window.innerWidth < 1200;
+      if (ismobile !== isMobile) setIsMobile(ismobile);
+  }, false);
+  }, [dispatch, isMobile]);
 
   return (
     <BrowserRouter>
@@ -56,7 +61,7 @@ function App() {
       options={{"client-id": "Ac7IQDngMxh-2-24_GOGMt09VNaOKJgF8dS1JKSKGPPw_WNGLvP75pmaf7TQYLuc4IZit1shBijYHnU4"}}
     >
     <div className="grid-container">
-            <header className="row">
+            <header className={isMobile ? "mobile-header" : "row"}>
                 <div>
                     <button type="button" className="open-sidebar" onClick={() => setSidebarIsOpen(true)}>
                       <i className="fa fa-bars"></i>
