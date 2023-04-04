@@ -42,7 +42,7 @@ function App() {
     dispatch(logoutUser(null));
   }
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const productCategories = useSelector(state => state.productCategories);
   const { items: categories, error: errorCategories, status: statusCategories } = productCategories;
 
@@ -150,7 +150,7 @@ function App() {
                         )}
                       </ul>
             </aside>
-            <main>
+            <main className={isMobile ? "mobile-main" : ""}>
             <Routes>
               <Route path='/seller/:id' element={<SellerScreen />} />
               <Route path='/' element={<HomeScreen />} exact />
