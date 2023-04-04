@@ -1,4 +1,4 @@
-export const URL="https://lomani-api.onrender.com";
+export const API="https://lomani-api.onrender.com";
 export const prices = [
     {
         name: 'any',
