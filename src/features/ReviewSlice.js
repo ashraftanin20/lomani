@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from "../components/utils.js";
 
 const initialState = {
     review: [],
@@ -17,7 +18,7 @@ export const createReview = createAsyncThunk('products/createReview', async (val
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const response = await axios.post(`/api/products/${values.id}/reviews`, values, config);
+        const response = await axios.post(`${API}/api/products/${values.id}/reviews`, values, config);
         return response.data;
     } catch (err) {
         const message = err.response && err.response.data.message 

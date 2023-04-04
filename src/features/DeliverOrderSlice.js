@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const deliverOrder = createAsyncThunk('orders/deliverOrder', 
                                     async (id, {rejectWithValue, getState}) => {
@@ -13,7 +14,7 @@ export const deliverOrder = createAsyncThunk('orders/deliverOrder',
         }
     }
     
-    const { data } = await axios.put(`/api/orders/${id}/deliver`, {},config);
+    const { data } = await axios.put(`${API}/api/orders/${id}/deliver`, {},config);
     return data.product;
     } catch(err){
             const message = err.response && err.response.data.message 

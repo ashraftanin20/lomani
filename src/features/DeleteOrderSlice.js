@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { API } from "../components/utils.js";
 export const deleteOrder = createAsyncThunk('orders/deleteOrder', 
                                     async (id, {rejectWithValue, getState}) => {
     let { auth } = getState();
@@ -13,7 +13,7 @@ export const deleteOrder = createAsyncThunk('orders/deleteOrder',
         }
     }
     
-    const { data } = await axios.delete(`/api/orders/${id}`, config);
+    const { data } = await axios.delete(`${API}/api/orders/${id}`, config);
     return data.product;
     } catch(err){
             const message = err.response && err.response.data.message 

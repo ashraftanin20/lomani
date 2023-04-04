@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from "../components/utils.js";
 
 export const createOrder = createAsyncThunk("order/createOrder", 
                             async (values, {getState, rejectWithValue, dispatch}) => {       
@@ -13,7 +14,7 @@ export const createOrder = createAsyncThunk("order/createOrder",
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const { data } = await axios.post("/api/orders", {
+        const { data } = await axios.post(`${API}/api/orders`, {
             orderItems: values.cartItems,
             shippingAddress: values.shippingAddress,
             paymentMethod: values.paymentMethod,

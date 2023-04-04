@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const createProduct = createAsyncThunk('product/createProduct', async (values, {getState, rejectWithValue}) => {
 
@@ -11,7 +12,7 @@ export const createProduct = createAsyncThunk('product/createProduct', async (va
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const { data } = await axios.post('/api/products', {}, config);
+        const { data } = await axios.post(`${API}/api/products`, {}, config);
         return data.product;
     } catch(err){
             const message = err.response && err.response.data.message 

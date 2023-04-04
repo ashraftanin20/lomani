@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API } from "../components/utils.js";
 
 export const listTopSellers = createAsyncThunk("users/fetchUsers", 
                             async (values, {getState, rejectWithValue}) => {       
@@ -11,7 +12,7 @@ export const listTopSellers = createAsyncThunk("users/fetchUsers",
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const { data } = await axios.get("/api/users/top-sellers", config);
+        const { data } = await axios.get(`${API}/api/users/top-sellers`, config);
         return data;
 
     } catch(err){

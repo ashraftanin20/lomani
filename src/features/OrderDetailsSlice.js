@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const detailsOrder = createAsyncThunk("order/getOrder", 
                                 async (orderId, {getState, rejectWithValue, dispatch}) => {
@@ -11,7 +12,7 @@ export const detailsOrder = createAsyncThunk("order/getOrder",
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const { data } = await axios.get(`/api/orders/${orderId}`, config);
+        const { data } = await axios.get(`${API}/api/orders/${orderId}`, config);
         //dispatch({type: detailsOrder.fulfilled, payload: data});
         return data;
     } catch (err) {

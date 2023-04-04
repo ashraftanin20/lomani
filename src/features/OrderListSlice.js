@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { API } from "../components/utils.js";
 const initialState = {
     orders: [],
     status: null,
@@ -17,7 +17,7 @@ export const listOrders = createAsyncThunk('orders/listOrders', async (values, {
                 Authorization: `Berear ${userInfo.token}`,
             }
         }
-        const response = await axios.get(`/api/orders?seller=${values.seller}`, config);
+        const response = await axios.get(`${API}/api/orders?seller=${values.seller}`, config);
         return response.data;
     } catch (err) {
         const message = err.response && err.response.data.message 

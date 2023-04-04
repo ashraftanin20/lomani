@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const deleteUser = createAsyncThunk("users/deleteUser", 
                             async (userId, {getState, rejectWithValue}) => {       
@@ -11,7 +12,7 @@ export const deleteUser = createAsyncThunk("users/deleteUser",
                 Authorization: `Bearer ${userInfo.token}`,
             }
         }
-        const { data } = await axios.delete(`/api/users/${userId}`, config);
+        const { data } = await axios.delete(`${API}/api/users/${userId}`, config);
         return data.message;
 
     } catch(err){

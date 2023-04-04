@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const updateProduct = createAsyncThunk('product/updateProduct', 
                                 async (product, {getState, rejectWithValue}) => {
@@ -11,7 +12,7 @@ export const updateProduct = createAsyncThunk('product/updateProduct',
                     Authorization: `Bearer ${userInfo.token}`,
                 }
             }
-            const { data } = await axios.put(`/api/products/${product._id}`, {
+            const { data } = await axios.put(`${API}/api/products/${product._id}`, {
                 name: product.name,
                 price: product.price,
                 image: product.image,

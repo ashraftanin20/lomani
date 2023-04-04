@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const updateProfile = createAsyncThunk('/user/updateProfile', async (
     user, {getState, rejectWithValue, dispatch}) => {
@@ -12,7 +13,7 @@ export const updateProfile = createAsyncThunk('/user/updateProfile', async (
                     Authorization: `Bearer ${userInfo.token}`,
                 }
             }
-            const { data } = await axios.put('/api/users/profile', user, config);
+            const { data } = await axios.put(`${API}/api/users/profile`, user, config);
             localStorage.setItem('userInfo', JSON.stringify(data));
             return data;
         } catch(err){

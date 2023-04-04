@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API } from "../components/utils.js";
 
 export const updateUserData = createAsyncThunk('users/updateUser', 
                                 async (user, {getState, rejectWithValue}) => {
@@ -11,7 +12,7 @@ export const updateUserData = createAsyncThunk('users/updateUser',
                     Authorization: `Bearer ${userInfo.token}`,
                 }
             }
-            const { data } = await axios.put(`/api/users/${user._id}`, {
+            const { data } = await axios.put(`${API}/api/users/${user._id}`, {
                 name: user.name,
                 email: user.email,
                 isAdmin: user.isAdmin,
