@@ -14,6 +14,7 @@ export default function ProductScreen() {
     const productDetails = useSelector(state => state.productDetails);
     const { product, error, status } = productDetails;
     const [qty, setQty] = useState(1);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
 
     const createReviewSlice = useSelector(state => state.createReviewSlice);
     const { error: createReviewError, status: crreateReviewStatus } = createReviewSlice;
@@ -42,13 +43,17 @@ export default function ProductScreen() {
             dispatch(resetCreateReview());
         }
         dispatch(fetchProductDetails(id));
-    }, [crreateReviewStatus, dispatch, id, qty]);
+        window.addEventListener("resize", () => {
+            const ismobile = window.innerWidth < 1200;
+            if (ismobile !== isMobile) setIsMobile(ismobile);
+        }, false);
+    }, [crreateReviewStatus, dispatch, id, qty, isMobile]);
 
     const addToCartHandler = () => {
         dispatch(addToCart({product: product, qty: qty, act: "add"}));
     }
         return (
-            <div>
+            <div className={ isMobile ? "mobile-main" : ""}>
             { 
                 status === "pending" && (<LoadingBox>Loading...</LoadingBox>)}
                 { status === "rejected" && (<MessageBox variant="danger">{error}</MessageBox>)}
